@@ -74,7 +74,13 @@ git push -u origin wjx
 
 ## 注意事项
 
-1. **分支名称**：当前分支是 `wjx`，如果你想推送到 `main` 分支，需要：
+1. **node_modules 不会被提交**：
+   - `.gitignore` 文件中已配置 `/node_modules`，确保 `node_modules` 目录不会被提交
+   - 推送脚本会自动检查并确保 `node_modules` 不会被提交
+   - 如果 `node_modules` 已经被 Git 跟踪，脚本会自动从 Git 中移除
+   - ✅ **你可以放心使用推送脚本，`node_modules` 不会被上传到 GitHub**
+
+2. **分支名称**：当前分支是 `wjx`，如果你想推送到 `main` 分支，需要：
    ```bash
    # 切换到 main 分支
    git checkout -b main
@@ -82,11 +88,16 @@ git push -u origin wjx
    git branch -M main
    ```
 
-2. **认证**：如果推送时提示需要认证，可能需要：
+3. **认证**：如果推送时提示需要认证，可能需要：
    - 使用 Personal Access Token（推荐）
    - 或者使用 SSH 密钥
 
-3. **.gitignore**：确保 `node_modules` 和 `build` 目录不会被提交
+4. **.gitignore**：已配置忽略以下文件/目录：
+   - `node_modules/` - 依赖包（不会被提交）
+   - `build/` - 构建文件（不会被提交）
+   - `*.backup` - 备份文件
+   - `.vscode/`, `.idea/` - IDE 配置文件
+   - 其他临时文件
 
 ## 验证推送
 
@@ -109,5 +120,30 @@ git push -u origin wjx
 A: 远程仓库未配置，执行：
 ```bash
 git remote add origin https://github.com/youyoupum/ReactNotePad.git
+```
+
+### Q: node_modules 会被提交吗？
+A: **不会**。`.gitignore` 文件中已配置 `/node_modules`，推送脚本也会自动检查并确保 `node_modules` 不会被提交。如果你担心，可以运行 `check-git-status.bat` 或 `check-git-status.ps1` 检查。
+
+### Q: 如何确认 node_modules 不会被提交？
+A: 可以运行检查脚本：
+```bash
+# Windows 批处理文件
+check-git-status.bat
+
+# PowerShell 脚本
+.\check-git-status.ps1
+```
+
+或者手动检查：
+```bash
+# 检查 .gitignore 是否包含 node_modules
+cat .gitignore | grep node_modules
+
+# 检查是否有 node_modules 被跟踪
+git ls-files | grep node_modules
+
+# 检查暂存区是否有 node_modules
+git diff --cached --name-only | grep node_modules
 ```
 

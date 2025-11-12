@@ -25,3 +25,16 @@ yarn-error.log*
 # 备份文件
 *.backup
 *性能监控示例.js
+
+# IDE 和编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系统文件
+Thumbs.db
+
+# 日志文件
+logs/
