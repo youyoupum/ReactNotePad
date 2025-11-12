@@ -1,38 +1,68 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  /* 使用 CSS 变量实现主题切换 */
+  background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 20px;
+  /* 添加过渡效果，让颜色切换更平滑 */
+  transition: background 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.App {
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+  /* 使用 CSS 变量 */
+  color: var(--text-primary);
 }
 
-@keyframes App-logo-spin {
+.App h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+/* 头部样式 */
+.app-header {
+  text-align: center;
+  /* 使用 CSS 变量 */
+  color: var(--text-primary);
+  margin-bottom: 30px;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.note-count {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* 笔记容器 */
+.notes-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 无限加载旋转动画 */
+@keyframes spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+}
+
+/* 测试按钮悬停效果 */
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
